@@ -1,0 +1,4 @@
+Consider probability that the husband has contracted influenza P(H) = 15%, probability that both the husband and the wife has contracted the disease P(HW) = 10%, 
+probability that at least one has disease P(H U W) = 21%. These events are not mutually exclusive, so the probability that the wife has contracted is:
+P(H U W) = P(W) + P(H) - P(HW), 
+P(W)=16%
