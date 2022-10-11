@@ -1,11 +1,19 @@
 """
 Test task
 """
-def summ_in_array(array, s):
-    pairs=[-1]
-    for num1 in array:
-        for i in range(array.index(num1), len(array) - 1):
-            num2=array[i+1]
-            if num1 + num2 == s:
-                pairs.append([num1, num2])
+def sum_in_array(array, s):
+    pairs = []
+    for i in array:
+        lo = 0
+        hi = len(array) - 1
+        j = s - i
+        while hi > lo:
+            mid = (lo + hi) // 2
+            if j == array[mid]:
+                pairs.append([i, j])
+                break
+            elif j > array[mid]:
+                lo = mid + 1
+            else:
+                hi = mid
     return pairs
