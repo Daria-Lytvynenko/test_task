@@ -17,7 +17,7 @@ consumption_info (table):
 SELECT 
     AVG(avg_amount) 
 FROM 
-    (select sum(fruit_weight (tons)) AS avg_amount 
+    (SELECT SUM(fruit_weight (tons)) AS avg_amount 
 FROM 
     seller_info 
 GROUP BY 
