@@ -14,12 +14,14 @@ import numpy as np
 import pathlib
 from datetime import date
 import warnings
+import seaborn as sns
 warnings.filterwarnings('ignore')
 
 # TODO Import the dataset 
 
 path = r'./data/weather_dataset.data'
 data=pd.read_csv(path, on_bad_lines='skip', header=0, sep='\s+')
+pd.options.display.float_format = "{:,.2f}".format
 
 # check information about type of data and non-null values
 data.info() 
@@ -63,17 +65,17 @@ data_check(data)
 now=date.today().year
 def fixing_dates(data):
     fix_date=pd.Series([])
-    for i in pd.DatetimeIndex(data.date):
+    for i in pd.DatetimeIndex(data.index):
         if i.year>now:
             year=i.year-100
             dat=pd.Series([i.replace(year=year)])
-            fix_date=pd.concat([fix_date, dat], axis=0, ignore_index=True)
+            fix_date=pd.concat([fix_date, dat], axis=0)
         else:
             dat=pd.Series(i)
-            fix_date=pd.concat([fix_date, dat], axis=0, ignore_index=True)
-            data.date=fix_date
+            fix_date=pd.concat([fix_date, dat], axis=0)
+    data.index=fix_date
     return data
-  
+
 fixing_dates(data)
 
 # TODO Compute how many values are missing for each location over the entire record
